@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+      "target": "ES2017",
+      "module": "commonJS",
+      "declaration": true,
+      "moduleResolution": "node",
+      "outDir": "dist",
+      "strict": true,
+      "esModuleInterop": true,
+      "paths": {
+        "@proto/*": ["./pb/*"],
+      },
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true
+  },
+  "include": ["src/**/*"]
+}

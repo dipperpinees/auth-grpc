@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./pkg/user/pb";
+
+message SignUpRequest {
+  string email = 1; 
+  string name = 2;
+  string password = 3;
+}
+
+message SignInRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message AccessTokenMessage {
+  string accessToken = 1;
+}
+
+message RefreshTokenMessage {
+  string refreshToken = 1;
+}
+
+message VerifyTokenMessage {
+  bool success = 1;
+}
+
+message User {
+  int32 id = 1; 
+  string email = 2; 
+  string name = 3;
+}
+
+service User_Service {
+  rpc signUp(SignUpRequest) returns (AuthResponse) {}
+  rpc signIn(SignInRequest) returns (AuthResponse) {}
+  rpc verifyAccessToken(AccessTokenMessage) returns (User) {}
+  rpc refreshAccessToken(RefreshTokenMessage) returns (AccessTokenMessage) {}
+  rpc signOut(RefreshTokenMessage) returns (VerifyTokenMessage) {}
+}
